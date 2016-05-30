@@ -1,0 +1,6 @@
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin\Debug\JumbledWord.exe.config
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\obj\Debug\JumbledWord.csprojResolveAssemblyReference.cache
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin\Debug\JumbledWord.exe
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin\Debug\JumbledWord.pdb
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\obj\Debug\JumbledWord.exe
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\obj\Debug\JumbledWord.pdb
