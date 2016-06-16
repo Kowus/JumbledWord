@@ -10,12 +10,16 @@ using System.Media;
 using System.Speech;
 using System.Speech.Synthesis;
 
+
 namespace Inoracia
 {
     class Program
     {
+        private static StreamWriter writeLog = File.AppendText("History.txt");
         private static StreamWriter writeToTextFile = new StreamWriter("Results.txt");
         private static string messenger = "";
+        private static string msg = "", diagnostics = "";
+
         /*
          * ============================================================================
          *                             REDUNDANT CODE
@@ -31,10 +35,20 @@ namespace Inoracia
         {
             try
             {
-
+                /*
+                 * Need To figure out how to store to history
+                string[] readLog = File.ReadAllLines("History.txt");
+                string logToString = "";
+                foreach (string item in readLog)
+                {
+                    logToString += item;
+                }
+                
+                Console.WriteLine(logToString + readLog.Length.ToString());
+                */
                 SpeechSynthesizer mySpeaker = new SpeechSynthesizer();
 
-                mySpeaker.Rate = 1;
+                mySpeaker.Rate = 2;
 
                 string welcome = "What word would you like solved?";
                 mySpeaker.SpeakAsync(welcome);
@@ -49,7 +63,7 @@ namespace Inoracia
 
                 writeToTextFile.Close();
 
-
+                mySpeaker.Rate = 2;
                 string searchMessage = String.Format("\tSearching possible matches for ");
                 Console.Write(searchMessage);
                 mySpeaker.Speak(searchMessage);
@@ -89,6 +103,9 @@ namespace Inoracia
                         {
                             // Set the Contents of messenger to the item found
                             messenger = String.Format("\t\tFound: {0}!", item);
+                            
+                            // For helping write to User Diag
+                            msg += item + " ";
                             //break;
 
                             if (messenger != "")
@@ -111,6 +128,7 @@ namespace Inoracia
                 string badNews = "";
                 if (messenger == "")
                 {
+                    msg = "No results were found";
                     // To be executed if no result was found
                     badNews = String.Format("Couldn't find a possible match for \"{0}\"\n", inoracia);
                     mySpeaker.SpeakAsync(badNews);
@@ -118,16 +136,16 @@ namespace Inoracia
                     
 
                 }
-                SystemSounds.Asterisk.Play();
-                Console.WriteLine("\nPress any key to continue...");
-                //int count = 1;
-                //string[] line2;
-                Console.ReadKey();
 
+                
 
                 // To Be Finished Later
                 // This whole section is unnecessary, but i am still going to keep it for reasons
                 // Unknown to me... lol
+
+                //int count = 1;
+                //string[] line2;
+                //string[] line1;
 
                 //while ((line1 = readFromResult.ReadLine()) != null)
                 //{
@@ -163,19 +181,52 @@ namespace Inoracia
                 //wanted to use System.IO.StreamReader initially... No longer needed
                 //readFromResult.Close();
                 //readFromTextFile.Close();
+
+
+
+
+                // Remember to write  usage log to text file
+                
+                DateTime myDate = DateTime.Now;
+
+                string usageLog = String.Format("[{0}]: \n\tSearched: {1} \n\t\tFound: {2}", myDate, inoracia, msg);
+                
+                writeLog.WriteLine(usageLog);
+                
+                writeLog.Close();
+
+
+                SystemSounds.Asterisk.Play();
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
+
+                // Never delete previous contents of writeLog
+                // Create string to get the contents of the 
+                // File at startup and add to it.. creates 
+                // Some kind of history
             }
             catch (Exception e)
             {
+                
                 // Protect User from Feeling Stupid
                 SpeechSynthesizer speakerOne = new SpeechSynthesizer();
                 speakerOne.SpeakAsync(e.Message);
                 Console.WriteLine(e.Message);
+
+
+                // Write Error To text File
+                diagnostics = e.Message;
+                DateTime myDate = DateTime.Now;
+                string myString = String.Format("[{0}]:\n\t{2}\n\t\t{1}", myDate, diagnostics, "Error Message:");
+                writeLog.WriteLine(myString);
+                
                 Console.ReadLine();
             }
 
             finally
             {
-                // Remember to write  usage log to text file
+                
+                
             }
             
             

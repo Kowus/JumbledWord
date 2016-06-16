@@ -4,3 +4,4 @@ C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin
 C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin\Debug\JumbledWord.pdb
 C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\obj\Debug\JumbledWord.exe
 C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\obj\Debug\JumbledWord.pdb
+C:\Users\Kowus\Documents\Visual Studio 2012\Projects\JumbledWord\JumbledWord\bin\Debug\History.txt
